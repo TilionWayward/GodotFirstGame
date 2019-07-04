@@ -27,11 +27,11 @@ func _process(delta):
 		$AnimatedSprite.play()
 	else:
 		$AnimatedSprite.stop()
-		
+
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
-	
+
 	# Animation
 	if velocity.x != 0:
 		$AnimatedSprite.animation = "right"
@@ -41,12 +41,11 @@ func _process(delta):
 		$AnimatedSprite.animation = "up"
 		$AnimatedSprite.flip_v = velocity.y > 0
 
-
 func _on_Player_body_entered(body):
 	hide() # Player disapperas after being hit
 	emit_signal("hit")
 	$CollisionShape2D.set_deferred("disabled", true)
-	
+
 func start(pos):
 	position = pos
 	show()
